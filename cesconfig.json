@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "cesVersion": "2.14.3",
-=======
-  "cesVersion": "2.14.1",
->>>>>>> 70042976f611e988269f4ca53743b4a7c7294b52
+  "cesVersion": "2.12.2",
   "projectName": "LangQuest",
   "packages": [
     {
@@ -24,12 +20,11 @@
     "overwrite": false,
     "importAlias": true,
     "packageManager": "npm",
-    "eas": false,
-    "publish": false
+    "eas": false
   },
   "packageManager": {
     "type": "npm",
-    "version": "11.2.0"
+    "version": "11.1.0"
   },
   "os": {
     "type": "Windows_NT",
