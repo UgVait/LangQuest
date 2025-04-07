@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "cesVersion": "2.14.3",
+=======
+  "cesVersion": "2.14.1",
+>>>>>>> 70042976f611e988269f4ca53743b4a7c7294b52
   "projectName": "LangQuest",
   "packages": [
     {
