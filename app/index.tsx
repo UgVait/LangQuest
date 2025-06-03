@@ -6,8 +6,13 @@ const Home = () => {
   const router = useRouter();
 
   const handlePlay = () => {
-    // Naviguojame į žaidimo ekraną (pvz. į /game)
     router.push('/mainscreen');
+  };
+
+  const handleSettings = () => {
+  };
+
+  const handleProfile = () => {
   };
 
   return (
@@ -15,22 +20,57 @@ const Home = () => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#f0f0f0'
+      backgroundColor: '#f0f0f0',
+      paddingHorizontal: 20
     }}>
-      <Text style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 20 }}>
+      <Text style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 40 }}>
         LangQuest
       </Text>
+
       <TouchableOpacity
         onPress={handlePlay}
         style={{
           backgroundColor: '#4CAF50',
           paddingVertical: 12,
           paddingHorizontal: 24,
-          borderRadius: 8
+          borderRadius: 8,
+          marginBottom: 15,
+          width: '80%',
+          alignItems: 'center'
         }}
       >
         <Text style={{ color: 'white', fontSize: 18 }}>Žaisti</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={handleSettings}
+        style={{
+          backgroundColor: '#2196F3',
+          paddingVertical: 12,
+          paddingHorizontal: 24,
+          borderRadius: 8,
+          marginBottom: 15,
+          width: '80%',
+          alignItems: 'center'
+        }}
+      >
+        <Text style={{ color: 'white', fontSize: 18 }}>Nustatymai</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={handleProfile}
+        style={{
+          backgroundColor: '#9C27B0',
+          paddingVertical: 12,
+          paddingHorizontal: 24,
+          borderRadius: 8,
+          width: '80%',
+          alignItems: 'center'
+        }}
+      >
+        <Text style={{ color: 'white', fontSize: 18 }}>Profilis</Text>
+      </TouchableOpacity>
+
     </View>
   );
 };
