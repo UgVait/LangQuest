@@ -1,73 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import questions from '~/assets/data/AllQuestionsData';
-import MultipleChoiceQuestion from './MultipleChoiceQuestion';
-import EndedQuestion from '~/components/EndedQuestion';
-import { QuizQuestion } from '~/types';
-import HeaderComponent from '~/components/HeaderComponent';
+import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { useRouter } from 'expo-router';
 
-export default function Home() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion>(
-    questions[currentQuestionIndex]
-  );
-  const [lives, setLives] = useState(5);
+const Home = () => {
+  const router = useRouter();
 
-  useEffect(() => {
-    if (currentQuestionIndex >= questions.length) {
-      Alert.alert('Jūs laimėjote!');
-      setCurrentQuestionIndex(0);
-    } else {
-      setCurrentQuestion(questions[currentQuestionIndex]);
-    }
-  }, [currentQuestionIndex]);
-
-  const onCorrectAnswer = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-  };
-
-  const onWrongAnswer = () => {
-    if (lives <= 1) {
-      Alert.alert('Jus pralaimejote!', 'Bandykite dar karta!', [
-        { text: 'Bandyti dar karta', onPress: restart },
-      ]);
-      setLives(0);
-    } else {
-      Alert.alert('Neteisingas atsakymas, bandykite dar kartą!');
-      setLives(lives - 1);
-    }
-  };
-
-  const restart = () => {
-    setLives(5);
-    setCurrentQuestionIndex(0);
+  const handlePlay = () => {
+    // Naviguojame į žaidimo ekraną (pvz. į /game)
+    router.push('/mainscreen');
   };
 
   return (
-    <SafeAreaView className="flex flex-1 p-3">
-      <StatusBar animated barStyle={'default'} />
-
-      {/* Header */}
-      <HeaderComponent progress={currentQuestionIndex / questions.length} lives={lives} />
-
-      {currentQuestion.type === 'MULTIPLE_CHOICE' && (
-        <MultipleChoiceQuestion
-          question={{
-            question: currentQuestion.text,
-            options: currentQuestion.options || [],
-          }}
-          onCorrectAnswer={onCorrectAnswer}
-          onWrongAnswer={onWrongAnswer}
-        />
-      )}
-      {currentQuestion.type === 'OPEN_ENDED' && (
-        <EndedQuestion
-          question={currentQuestion}
-          onCorrectAnswer={onCorrectAnswer}
-          onWrongAnswer={onWrongAnswer}
-        />
-      )}
-    </SafeAreaView>
+    <View style={{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f0f0f0'
+    }}>
+      <Text style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 20 }}>
+        LangQuest
+      </Text>
+      <TouchableOpacity
+        onPress={handlePlay}
+        style={{
+          backgroundColor: '#4CAF50',
+          paddingVertical: 12,
+          paddingHorizontal: 24,
+          borderRadius: 8
+        }}
+      >
+        <Text style={{ color: 'white', fontSize: 18 }}>Žaisti</Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
+
+export default Home;
